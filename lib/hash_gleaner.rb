@@ -12,7 +12,7 @@ module HashGleaner
       missing_keys = MissingKeys.new
       action = (block if block_given?) || (proc if proc.is_a? Proc)
       h = List.new(hash, missing_keys).instance_eval(&action) if action
-      raise MissingKeyException.new(missing_keys) if missing_keys.has_keys?
+      raise MissingKeysException.new(missing_keys) if missing_keys.has_keys?
       h
     end
   end
@@ -23,7 +23,7 @@ module HashGleaner
     end
   end
 
-  class MissingKeyException < StandardError
+  class MissingKeysException < StandardError
     def initialize(missing_keys)
       msg = "Missing required keys #{missing_keys.keys.uniq}"
       super(msg)
