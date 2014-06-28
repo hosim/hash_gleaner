@@ -8,20 +8,20 @@
 require 'hash_gleaner'
 
 h = {
-  account: {
-    id: 1234,
-    email: 'xxx@xxx.xx',
-    name: 'John Doe',
-    phone: [
+  :account => {
+    :id => 1234,
+    :email => 'xxx@xxx.xx',
+    :name => 'John Doe',
+    :phone => [
       {
-        id: 2345,
-        type: 'mobile',
-        number: 'xxxxxxxxxx',
+        :id => 2345,
+        :type => 'mobile',
+        :number => 'xxxxxxxxxx',
       },
       {
-        id: 2346,
-        type: 'office',
-        number: 'yyyyyyyyyy',
+        :id => 2346,
+        :type => 'office',
+        :number => 'yyyyyyyyyy',
       },
     ],
   },
@@ -36,7 +36,7 @@ params = HashGleaner.apply(h) do
              end
            end
          end
-=> {:account=>{:name=>"John Doe", :phone=>[{:type=>"mobile", :number=>"xxxxxxxxxx"}, {:type=>"office", :number=>"yyyyyyyyyy"}]}}
+#=> {:account=>{:name=>"John Doe", :phone=>[{:type=>"mobile", :number=>"xxxxxxxxxx"}, {:type=>"office", :number=>"yyyyyyyyyy"}]}}
 ```
 
 When `Hash` object includes `HashGleaner` module, you can use `glean` method.
@@ -76,7 +76,7 @@ You can describe `required` or `optional` in hash structure.
 When the hash object misses any required keys,
 `HashGleaner` raises `MissingKeysException`.
 
-```
+```ruby
 proc = Proc.new{
   (required)
   o :account do
@@ -92,5 +92,5 @@ proc = Proc.new{
 }
 
 params = h.glean(proc)
-# => HashGleaner::MissingKeyException: Missing required keys [:name]
+#=> HashGleaner::MissingKeyException: Missing required keys [:name]
 ```
