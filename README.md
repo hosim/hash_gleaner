@@ -2,6 +2,11 @@
 ## Summary
 `HashGleaner` allows you to declare hash structure you want to get like Strong Parameters.
 
+## Install
+```
+$ gem install hash_gleaner
+```
+
 ## Example
 
 ```ruby
@@ -55,7 +60,7 @@ params = h.glean do
          end
 ```
 
-hash structure can be described as `Proc` object.
+A hash structure can be described as `Proc` object.
 
 ```ruby
 proc = Proc.new{
